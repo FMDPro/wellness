@@ -1,176 +1,159 @@
-import React, { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { CalendarDays } from "lucide-react";
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness & Longevity Program</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f9;
+            color: #333;
+        }
 
-const WellnessLandingPage = () => {
-  const [formData, setFormData] = useState({
-    date: "",
-    time: "",
-    name: "",
-    email: "",
-  });
+        header {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.date || !formData.time || !formData.name || !formData.email) {
-      alert("Please fill in all fields before scheduling.");
-      return;
-    }
-    alert(`Thank you, ${formData.name}! Your consultation is scheduled.`);
-  };
+        .section {
+            margin: 40px 0;
+        }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-100 to-white p-6">
-      <header className="text-center py-10">
-        <h1 className="text-4xl font-bold text-teal-800">
-          Welcome to the Wellness & Longevity Program
-        </h1>
-        <p className="text-lg text-gray-600 mt-4">
-          Your journey to a healthier, longer life starts here. Join our program
-          with regular monthly visits designed to optimize your health and
-          vitality.
-        </p>
-      </header>
+        .cta {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+        }
 
-      <section className="my-10 text-center">
-        <h2 className="text-2xl font-semibold text-teal-700 mb-4">
-          What We Offer
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card className="shadow-md">
-            <CardContent>
-              <h3 className="text-xl font-medium text-teal-600 mb-2">
-                Personalized Wellness Plans
-              </h3>
-              <p className="text-gray-600">
-                Tailored strategies to improve your health and longevity.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="shadow-md">
-            <CardContent>
-              <h3 className="text-xl font-medium text-teal-600 mb-2">
-                Expert Guidance
-              </h3>
-              <p className="text-gray-600">
-                Monthly visits with experienced professionals to track progress
-                and adapt your plan.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="shadow-md">
-            <CardContent>
-              <h3 className="text-xl font-medium text-teal-600 mb-2">
-                Cutting-Edge Interventions
-              </h3>
-              <p className="text-gray-600">
-                Access to the latest in wellness and longevity science.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+        .cta:hover {
+            background-color: #45a049;
+        }
 
-      <section className="my-10 text-center">
-        <h2 className="text-2xl font-semibold text-teal-700 mb-4">
-          Testimonials
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card className="shadow-lg">
-            <CardContent>
-              <p className="text-gray-700 italic">
-                "This program completely changed my life! I've never felt
-                healthier or more energetic."
-              </p>
-              <p className="mt-4 font-medium text-teal-600">- Sarah W.</p>
-            </CardContent>
-          </Card>
-          <Card className="shadow-lg">
-            <CardContent>
-              <p className="text-gray-700 italic">
-                "The monthly visits kept me accountable and motivated. Highly
-                recommend!"
-              </p>
-              <p className="mt-4 font-medium text-teal-600">- James L.</p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
 
-      <section className="my-10 text-center">
-        <h2 className="text-2xl font-semibold text-teal-700 mb-4">
-          Book Your Free Consultation
-        </h2>
-        <p className="text-gray-600 mb-6">
-          Take the first step towards better health. Schedule a free
-          consultation today!
-        </p>
-        <div className="flex justify-center">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="p-4 bg-white shadow-lg rounded-lg w-full max-w-md"
-          >
-            <form onSubmit={handleFormSubmit}>
-              <div className="flex items-center mb-4">
-                <CalendarDays className="text-teal-500 w-6 h-6 mr-3" />
-                <h3 className="text-teal-700 font-semibold text-lg">
-                  Choose Your Date & Time
-                </h3>
-              </div>
-              <Input
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleInputChange}
-                className="mb-4"
-              />
-              <Input
-                type="time"
-                name="time"
-                value={formData.time}
-                onChange={handleInputChange}
-                className="mb-4"
-              />
-              <Input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="mb-4"
-              />
-              <Input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="mb-4"
-              />
-              <Button
-                type="submit"
-                className="w-full bg-teal-600 text-white hover:bg-teal-700"
-              >
-                Schedule Consultation
-              </Button>
+        .testimonial {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 600px;
+        }
+
+        .email-form {
+            margin-top: 20px;
+        }
+
+        .email-form input[type="email"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 70%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .email-form button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .email-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Wellness & Longevity Program</h1>
+        <p>Your journey to better health starts here.</p>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>Our Program</h2>
+            <p>Experience a personalized approach to health and longevity. Our program includes:</p>
+            <ul>
+                <li>Regular monthly visits with our health experts.</li>
+                <li>Comprehensive wellness assessments.</li>
+                <li>Tailored plans for optimal longevity and vitality.</li>
+            </ul>
+            <a class="cta" href="#schedule">Schedule a Free Consultation</a>
+        </section>
+
+        <section class="section" id="testimonials">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p><strong>"This program has been life-changing! The monthly visits keep me on track."</strong> – Sarah W.</p>
+                </div>
+                <div class="testimonial">
+                    <p><strong>"I feel healthier and more energized than ever."</strong> – Mark P.</p>
+                </div>
+                <div class="testimonial">
+                    <p><strong>"The personalized plan made a huge difference in my overall wellness."</strong> – Jessica R.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="schedule">
+            <h2>Schedule Your Free Consultation</h2>
+            <p>Book a free consultation with our experts to learn more about how our program can help you.</p>
+            <!-- Embed Calendify or Calendly -->
+            <iframe src="https://calendly.com/your-calendar-link" title="Schedule Consultation"></iframe>
+        </section>
+
+        <section class="section">
+            <h2>Stay Connected</h2>
+            <p>Sign up for updates and tips for a healthier lifestyle.</p>
+            <form class="email-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
             </form>
-          </motion.div>
-        </div>
-      </section>
-
-      <footer className="text-center py-6 text-gray-500">
-        <p>&copy; 2025 Wellness & Longevity Program. All rights reserved.</p>
-      </footer>
+        </section>
     </div>
-  );
-};
 
-export default WellnessLandingPage;
+    <footer>
+        <p>&copy; 2025 Wellness & Longevity Program. All rights reserved.</p>
+    </footer>
+</body>
+</html>
